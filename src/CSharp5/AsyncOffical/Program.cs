@@ -1,4 +1,28 @@
-﻿static void MakeBreakfast()
+﻿DateTime beforeDT = DateTime.Now;
+for (int i = 0; i < 5; i++)
+{
+    MakeBreakfast();
+}
+DateTime afterDT = DateTime.Now;
+TimeSpan ts = afterDT.Subtract(beforeDT);
+Console.WriteLine($"同步执行程序耗时: {ts.TotalMilliseconds}ms");
+
+beforeDT = DateTime.Now;
+for (int i = 0; i < 5; i++)
+{
+    await MakeBreakfastBetterAsync();
+}
+afterDT = DateTime.Now;
+ts = afterDT.Subtract(beforeDT);
+Console.WriteLine($"异步执行程序耗时: {ts.TotalMilliseconds}ms");
+
+ beforeDT = DateTime.Now;
+await MakeBreakfastBetterMultiTask();
+ afterDT = DateTime.Now;
+ ts = afterDT.Subtract(beforeDT);
+Console.WriteLine($"并行编程程序耗时: {ts.TotalMilliseconds}ms");
+
+static void MakeBreakfast()
 {
     var cup = PourCoffee();
     Console.WriteLine("coffee is ready");
@@ -19,7 +43,7 @@
     Console.WriteLine("Breakfast is ready!");
 }
 
-static async void MakeBreakfastAsync()
+static async Task MakeBreakfastAsync()
 {
     var cup = PourCoffee();
     Console.WriteLine("coffee is ready");
@@ -40,6 +64,40 @@ static async void MakeBreakfastAsync()
     Console.WriteLine("Breakfast is ready!");
 }
 
+static async Task MakeBreakfastBetterAsync()
+{
+    Coffee cup = PourCoffee();
+    Console.WriteLine("Coffee is ready");
+
+    Task<Egg> eggsTask = FryEggsAsync(2);
+    Task<Bacon> baconTask = FryBaconAsync(3);
+    Task<Toast> toastTask = ToastBreadAsync(2);
+
+    Toast toast = await toastTask;
+    ApplyButter(toast);
+    ApplyJam(toast);
+    Console.WriteLine("Toast is ready");
+    Juice oj = PourOJ();
+    Console.WriteLine("Oj is ready");
+
+    Egg eggs = await eggsTask;
+    Console.WriteLine("Eggs are ready");
+    Bacon bacon = await baconTask;
+    Console.WriteLine("Bacon is ready");
+
+    Console.WriteLine("Breakfast is ready!");
+}
+
+static async Task MakeBreakfastBetterMultiTask()
+{
+    Task[] tasks = new Task[5];
+    for (int i = 0; i < 5; i++)
+    {
+        tasks[i] = new Task((parameter) => MakeBreakfastBetterAsync().Wait(), "aaa");
+        tasks[i].Start();
+    }
+    Task.WaitAll(tasks);
+}
 
 static Juice PourOJ()
 {
@@ -72,7 +130,7 @@ static async Task<Toast> ToastBreadAsync(int slices)
         Console.WriteLine("Putting a slice of bread in the toaster");
     }
     Console.WriteLine("Start toasting...");
-    Task.Delay(3000).Wait();
+    await Task.Delay(3000);
     Console.WriteLine("Remove toast from toaster");
     return await Task.FromResult(new Toast());
 }
@@ -92,19 +150,19 @@ static Bacon FryBacon(int slices)
     return new Bacon();
 }
 
-static Task<Bacon> FryBaconAsync(int slices)
+static async Task<Bacon> FryBaconAsync(int slices)
 {
     Console.WriteLine($"putting {slices} slices of bacon in the pan");
     Console.WriteLine("cooking first side of bacon...");
-    Task.Delay(3000).Wait();
+    await Task.Delay(3000);
     for (int slice = 0; slice < slices; slice++)
     {
         Console.WriteLine("flipping a slice of bacon");
     }
     Console.WriteLine("cooking the second side of bacon...");
-    Task.Delay(3000).Wait();
+    await Task.Delay(3000);
     Console.WriteLine("Put bacon on plate");
-    return Task.FromResult(new Bacon());
+    return await Task.FromResult(new Bacon());
 }
 
 static Egg FryEggs(int howMany)
@@ -118,15 +176,15 @@ static Egg FryEggs(int howMany)
     return new Egg();
 }
 
-static Task<Egg> FryEggsAsync(int howMany)
+static async Task<Egg> FryEggsAsync(int howMany)
 {
     Console.WriteLine("Warming the egg pan...");
-    Task.Delay(3000).Wait();
+    await Task.Delay(3000);
     Console.WriteLine($"cracking {howMany} eggs");
     Console.WriteLine("cooking the eggs ...");
-    Task.Delay(3000).Wait();
+    await Task.Delay(3000);
     Console.WriteLine("Put eggs on plate");
-    return Task.FromResult(new Egg());
+    return await Task.FromResult(new Egg());
 }
 
 static Coffee PourCoffee()
