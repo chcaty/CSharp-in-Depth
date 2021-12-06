@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncIntro", "CSharp5\Async
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncConsole", "CSharp5\AsyncConsole\AsyncConsole.csproj", "{D2D747F8-DB3F-42DB-9D71-2746DE6902A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Append", "CSharp5\Append\Append.csproj", "{05927F92-97A7-4788-8C9A-495EECDBF925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Append", "CSharp5\Append\Append.csproj", "{05927F92-97A7-4788-8C9A-495EECDBF925}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicType", "CSharp2\DynamicType\DynamicType.csproj", "{ED56FF09-1CDB-40D3-9244-6391862205D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncOffical", "CSharp5\AsyncOffical\AsyncOffical.csproj", "{890E65D6-ADFE-4356-B6E1-DB6A14D2F240}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncOffical", "CSharp5\AsyncOffical\AsyncOffical.csproj", "{890E65D6-ADFE-4356-B6E1-DB6A14D2F240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiOffical", "CSharp5\MultiOffical\MultiOffical.csproj", "{A3260FDA-A081-4344-ACED-7223288BC2C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{890E65D6-ADFE-4356-B6E1-DB6A14D2F240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890E65D6-ADFE-4356-B6E1-DB6A14D2F240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890E65D6-ADFE-4356-B6E1-DB6A14D2F240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3260FDA-A081-4344-ACED-7223288BC2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3260FDA-A081-4344-ACED-7223288BC2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3260FDA-A081-4344-ACED-7223288BC2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3260FDA-A081-4344-ACED-7223288BC2C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{05927F92-97A7-4788-8C9A-495EECDBF925} = {ACED2C09-1EB6-4062-9803-60F233F81629}
 		{ED56FF09-1CDB-40D3-9244-6391862205D2} = {C02CC405-60EF-45D2-9014-781AC1E3CE03}
 		{890E65D6-ADFE-4356-B6E1-DB6A14D2F240} = {ACED2C09-1EB6-4062-9803-60F233F81629}
+		{A3260FDA-A081-4344-ACED-7223288BC2C6} = {ACED2C09-1EB6-4062-9803-60F233F81629}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD910F48-5A13-45E5-BA6E-63A9D3F960CD}
